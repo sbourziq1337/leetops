@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>LeetOps v2 | 1337 DevOps</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(
+        ellipse at top, #30205b, #090718 75%
+      );
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .purple { color: #a78bfa; }
+
+    .version {
+      padding: 9px 17px;
+      border: 1px solid #a78bfa;
+      border-radius: 30px;
+      color: #c4b5fd;
+      background: #a78bfa16;
+      font-size: 13px;
+      animation: badgeGlow 2s infinite alternate;
+    }
+
+    @keyframes badgeGlow {
+      to { box-shadow: 0 0 25px #a78bfa66; }
+    }
+
+    main {
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .rocket {
+      width: 105px;
+      height: 105px;
+      display: grid;
+      place-items: center;
+      font-size: 48px;
+      border-radius: 25px;
+      background: #312058;
+      border: 2px solid #a78bfa;
+      box-shadow: 0 0 40px #a78bfa55;
+      animation: fly 3s ease-in-out infinite;
+    }
+
+    @keyframes fly {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+
+    .eyebrow {
+      margin-top: 35px;
+      color: #c4b5fd;
+      font-size: 12px;
+      letter-spacing: 4px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 85px);
+      line-height: 1.1;
+      margin: 22px 0;
+      animation: appear 1s ease both;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .subtitle {
+      max-width: 480px;
+      color: #aaa4c1;
+      line-height: 1.8;
+    }
+
+    .terminal {
+      width: min(470px, 100%);
+      margin-top: 30px;
+      padding: 20px;
+      background: #100d25;
+      border: 1px solid #5b4b88;
+      border-radius: 12px;
+      text-align: left;
+      font-family: monospace;
+      font-size: 13px;
+      box-shadow: 0 10px 40px #0005;
+    }
+
+    .terminal-header {
+      color: #c4b5fd;
+      margin-bottom: 15px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #ffffff15;
+    }
+
+    .terminal-line {
+      color: #86efac;
+      min-height: 22px;
+    }
+
+    .cursor {
+      display: inline-block;
+      color: #c4b5fd;
+      animation: blink .8s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .tags {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tags span {
+      padding: 10px 17px;
+      border-radius: 8px;
+      border: 1px solid #66568c;
+      color: #ddd6fe;
+      background: #a78bfa12;
+      transition: transform .25s, background .25s;
+    }
+
+    .tags span:hover {
+      transform: translateY(-5px);
+      background: #a78bfa30;
+    }
+
+    .particle {
+      width: 3px;
+      height: 3px;
+      position: fixed;
+      background: #c4b5fd;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 7s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(105vh);
+        opacity: 0;
+      }
+      25% { opacity: .8; }
+      to {
+        transform: translateY(-20vh);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      border-top: 1px solid #ffffff18;
+      text-align: center;
+      padding: 25px;
+      color: #817b9a;
+      font-size: 12px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      LEET<span class="purple">OPS</span> 42
+    </div>
+    <div class="version">● VERSION 2.0</div>
+  </header>
+
+  <main>
+    <div class="rocket">🚀</div>
+
+    <p class="eyebrow">
+      1337 NETWORK · RELEASE 02
+    </p>
+
+    <h1>
+      DEPLOYMENT<br>
+      <span class="purple">COMPLETE.</span>
+    </h1>
+
+    <p class="subtitle">
+      Your latest version is live!
+      From GitHub to Kubernetes,
+      powered by Docker, K3d and Argo CD.
+    </p>
+
+    <div class="terminal">
+      <div class="terminal-header">
+        ● deployment@leetops:~$
+      </div>
+
+      <div id="terminal-output"></div>
+      <span class="cursor">▌</span>
+    </div>
+
+    <div class="tags">
+      <span>Docker</span>
+      <span>Kubernetes</span>
+      <span>K3d</span>
+      <span>Argo CD</span>
+      <span>GitOps</span>
+    </div>
+  </main>
+
+  <footer>
+    INCEPTION OF THINGS · PART 3 · 1337
+    <br><br>
+    LeetOps v2.0
+  </footer>
+
+  <script>
+    const lines = [
+      "✓ GitOps deployment demo",
+      "✓ Image: leetops:v2",
+      "✓ Welcome to version 2!"
+    ];
+
+    const terminal = document.getElementById(
+      "terminal-output"
+    );
+
+    let lineIndex = 0;
+
+    function showLine() {
+      if (lineIndex >= lines.length) return;
+
+      const div = document.createElement("div");
+      div.className = "terminal-line";
+      div.textContent = lines[lineIndex];
+
+      terminal.appendChild(div);
+      lineIndex++;
+
+      setTimeout(showLine, 600);
+    }
+
+    setTimeout(showLine, 500);
+
+    // Floating purple particles
+    for (let i = 0; i < 35; i++) {
+      const p = document.createElement("div");
+      p.className = "particle";
+
+      p.style.left = Math.random() * 100 + "%";
+      p.style.animationDelay =
+        -Math.random() * 7 + "s";
+      p.style.animationDuration =
+        4 + Math.random() * 6 + "s";
+
+      document.body.appendChild(p);
+    }
+  </script>
+</body>
+</html>
+

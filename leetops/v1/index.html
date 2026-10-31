@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>LeetOps | 1337 DevOps</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(
+        ellipse at top, #16334b, #050912 75%
+      );
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .logo span, .green { color: #2debc8; }
+
+    .version {
+      border: 1px solid #2debc8;
+      color: #2debc8;
+      padding: 9px 17px;
+      border-radius: 30px;
+      font-size: 13px;
+    }
+
+    main {
+      min-height: 73vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .symbol {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #2debc8;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 45px;
+      margin-bottom: 30px;
+      background: #102e32;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        box-shadow: 0 0 10px #2debc844;
+        transform: scale(1);
+      }
+      to {
+        box-shadow: 0 0 45px #2debc888;
+        transform: scale(1.07);
+      }
+    }
+
+    .eyebrow {
+      color: #2debc8;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(45px, 9vw, 90px);
+      line-height: 1.05;
+      margin: 20px 0;
+      animation: slideUp 1s ease both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      max-width: 460px;
+      line-height: 1.8;
+    }
+
+    .terminal {
+      background: #050c13;
+      border: 1px solid #284854;
+      color: #2debc8;
+      padding: 18px 24px;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .cursor {
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .tags {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tags span {
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px 17px;
+      color: #cbd5e1;
+      background: #ffffff08;
+    }
+
+    .particle {
+      position: fixed;
+      background: #2debc8;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 0; }
+      25% { opacity: .8; }
+      to { transform: translateY(-20vh); opacity: 0; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+      border-top: 1px solid #ffffff18;
+      font-size: 12px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LEET<span>OPS</span> 42</div>
+    <div class="version">● VERSION 1.0</div>
+  </header>
+
+  <main>
+    <div class="symbol">⚙</div>
+
+    <p class="eyebrow">WELCOME TO THE 1337 NETWORK</p>
+
+    <h1>BUILD. SHIP.<br><span class="green">DEPLOY.</span></h1>
+
+    <p class="subtitle">
+      From code to Kubernetes.
+      Powered by Docker, K3d and Argo CD.
+      One commit, one deployment.
+    </p>
+
+    <div class="terminal">
+      <span id="typing"></span><span class="cursor">▌</span>
+    </div>
+
+    <div class="tags">
+      <span>Docker</span>
+      <span>Kubernetes</span>
+      <span>K3d</span>
+      <span>Argo CD</span>
+      <span>GitOps</span>
+    </div>
+  </main>
+
+  <footer>INCEPTION OF THINGS · PART 3 · 1337</footer>
+
+  <script>
+    const command = "$ kubectl get pods -n dev";
+    const output = document.getElementById("typing");
+    let index = 0;
+
+    function typeCommand() {
+      if (index < command.length) {
+        output.textContent += command[index++];
+        setTimeout(typeCommand, 75);
+      }
+    }
+
+    typeCommand();
+
+    // Decorative floating particles
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement("div");
+      particle.className = "particle";
+      particle.style.left = Math.random() * 100 + "%";
+      particle.style.animationDelay = -Math.random() * 6 + "s";
+      particle.style.animationDuration = 4 + Math.random() * 5 + "s";
+      document.body.appendChild(particle);
+    }
+  </script>
+</body>
+</html>
