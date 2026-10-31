@@ -5,7 +5,7 @@ metadata:
   namespace: dev
 
 spec:
-  replicas: 4
+  replicas: 2
 
   selector:
     matchLabels:
@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
         - name: leetops
-          image: sbourziq/leetops:v1
+          image: sbourziq/leetops:v2
           ports:
             - containerPort: 80
